@@ -10,3 +10,7 @@ first_eval.txt
 model_test.txt
 eval_results/*_details.jsonl
 eval_results/holdout/*_details.jsonl
+bin/
+logs/
+SHARE_LINKS.txt
+gateway_log.csv

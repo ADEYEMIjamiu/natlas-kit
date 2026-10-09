@@ -25,9 +25,13 @@ st.set_page_config(page_title="Ṣọ́ra — Scam Checker", page_icon="🛡️"
 st.title("🛡️ Ṣọ́ra — Is this message a scam?")
 st.caption("Paste any SMS, WhatsApp message, email or job advert in English, Pidgin, Yorùbá, Hausa or Igbo. Powered by N-ATLAS, Nigeria's LLM, via N-ATLAS Kit.")
 
+PUBLIC = os.getenv("NATLAS_PUBLIC") == "1"
 with st.sidebar:
-    base = st.text_input("N-ATLAS endpoint", os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"))
-    model = st.text_input("Model id", os.getenv("NATLAS_MODEL", "n-atlas"))
+    if PUBLIC:
+        base = os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"); model = os.getenv("NATLAS_MODEL", "n-atlas")
+    else:
+        base = st.text_input("N-ATLAS endpoint", os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"))
+        model = st.text_input("Model id", os.getenv("NATLAS_MODEL", "n-atlas"))
     nt = NAtlas(base_url=base, model=model)
     h = nt.health()
     st.success("Model online") if h.get("ok") else st.error("Model offline — start LM Studio server")

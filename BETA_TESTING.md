@@ -1,6 +1,12 @@
 # N-ATLAS Kit — Beta Tester Guide (≈20 minutes)
 
-Thank you for testing! Please follow the steps and then fill in the feedback form at the end.
+Thank you for testing!
+
+**Easiest way (no install, ~10 min):** open the
+[Colab notebook](https://colab.research.google.com/github/ADEYEMIjamiu/natlas-kit/blob/main/notebooks/NATLAS_Kit_Beta_Test.ipynb),
+paste the endpoint + API key the team sent you, run the cells top to bottom, and screenshot the summary at the end.
+
+**Full local install** (if you prefer) is below.
 
 ## 1. Install (5 min)
 ```bash

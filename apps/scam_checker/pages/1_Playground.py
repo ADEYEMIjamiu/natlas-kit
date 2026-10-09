@@ -13,8 +13,11 @@ st.set_page_config(page_title="N-ATLAS Kit Playground", page_icon="🧪", layout
 st.title("🧪 N-ATLAS Kit Playground")
 st.caption("Try N-ATLAS in Yoruba, Hausa, Igbo, Pidgin and Nigerian English, then copy the Python that does the same thing.")
 
-base = st.sidebar.text_input("N-ATLAS endpoint", os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"))
-model = st.sidebar.text_input("Model id", os.getenv("NATLAS_MODEL", "n-atlas"))
+if os.getenv("NATLAS_PUBLIC") == "1":
+    base, model = os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"), os.getenv("NATLAS_MODEL", "n-atlas")
+else:
+    base = st.sidebar.text_input("N-ATLAS endpoint", os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"))
+    model = st.sidebar.text_input("Model id", os.getenv("NATLAS_MODEL", "n-atlas"))
 temp = st.sidebar.slider("Temperature", 0.0, 1.0, 0.2, 0.1)
 nt = NAtlas(base_url=base, model=model, temperature=temp)
 

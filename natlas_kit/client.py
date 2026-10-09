@@ -39,6 +39,7 @@ class NAtlas:
     base_url: str = field(default_factory=lambda: os.getenv("NATLAS_BASE_URL", "http://localhost:1234/v1"))
     model: str = field(default_factory=lambda: os.getenv("NATLAS_MODEL", "n-atlas"))
     api_key: str = field(default_factory=lambda: os.getenv("NATLAS_API_KEY", "not-needed"))
+    tester: str = field(default_factory=lambda: os.getenv("NATLAS_TESTER", ""))
     timeout: float = 120.0
     temperature: float = 0.2
     usage: Usage = field(default_factory=Usage)
@@ -48,7 +49,8 @@ class NAtlas:
         req = urllib.request.Request(
             self.base_url.rstrip("/") + path,
             data=json.dumps(payload).encode(),
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}"},
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}",
+                     **({"X-Tester": self.tester} if self.tester else {})},
         )
         try:
             return urllib.request.urlopen(req, timeout=self.timeout)
@@ -95,7 +97,9 @@ class NAtlas:
 
     def health(self) -> dict:
         try:
-            with urllib.request.urlopen(self.base_url.rstrip("/") + "/models", timeout=10) as r:
+            req = urllib.request.Request(self.base_url.rstrip("/") + "/models",
+                                         headers={"Authorization": f"Bearer {self.api_key}"})
+            with urllib.request.urlopen(req, timeout=15) as r:
                 models = [m["id"] for m in json.loads(r.read()).get("data", [])]
             return {"ok": True, "base_url": self.base_url, "models": models, "model_loaded": self.model in models}
         except Exception as e:  # noqa: BLE001
