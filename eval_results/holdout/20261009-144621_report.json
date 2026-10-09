@@ -1,0 +1,27 @@
+{
+  "model": "n-atlas",
+  "base_url": "http://localhost:1234/v1",
+  "timestamp": "20261009-144621",
+  "results": {
+    "scam": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "per_language_accuracy": {
+        "en": 1.0,
+        "pcm": 1.0,
+        "yo": 1.0,
+        "ha": 1.0,
+        "ig": 1.0
+      },
+      "n": 30
+    },
+    "langid": {
+      "accuracy": 1.0,
+      "n": 30
+    }
+  },
+  "seconds": 284.4,
+  "calls": 30
+}

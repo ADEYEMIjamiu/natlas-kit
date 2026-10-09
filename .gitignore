@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+apps/scam_checker/session_log.csv
+check.txt
+check.sh
+first_eval.txt
+model_test.txt
+eval_results/*_details.jsonl
+eval_results/holdout/*_details.jsonl

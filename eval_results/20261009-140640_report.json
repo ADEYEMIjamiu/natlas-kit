@@ -1,0 +1,36 @@
+{
+  "model": "n-atlas",
+  "base_url": "http://localhost:1234/v1",
+  "timestamp": "20261009-140640",
+  "results": {
+    "scam": {
+      "accuracy": 0.917,
+      "precision": 0.87,
+      "recall": 1.0,
+      "f1": 0.93,
+      "per_language_accuracy": {
+        "en": 0.882,
+        "pcm": 1.0,
+        "yo": 0.75,
+        "ha": 1.0,
+        "ig": 1.0
+      },
+      "n": 36
+    },
+    "translate": {
+      "chrf": 53.1,
+      "per_language_chrf": {
+        "yo": 30.2,
+        "ha": 62.1,
+        "ig": 66.9
+      },
+      "n": 15
+    },
+    "langid": {
+      "accuracy": 0.722,
+      "n": 36
+    }
+  },
+  "seconds": 422.0,
+  "calls": 123
+}
